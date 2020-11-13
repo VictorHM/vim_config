@@ -1,5 +1,6 @@
 set nocompatible
 set number
+set relativenumber
 set hidden
 syntax on
 set nowrap
@@ -7,15 +8,8 @@ set fileencodings=utf-8
 set listchars=eol:$,tab:>-,space:-,nbsp:☠,trail:~,extends:>,precedes:<
 set cmdheight=2
 
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
-"execute pathogen#infect()
 
-" Map Tagbar plugin to easier access
-"nnoremap tags :TagbarToggle<CR>
-"nnoremap ttags :TagbarOpenAutoClose<CR>
 noremap tree :NERDTreeToggle<CR>
-"nnoremap <F4> :NERDTreeToggle<CR>
 " Add keybinding for :NERDTreeFind
 nnoremap busca :NERDTreeFind<CR>
 " Set clang path
@@ -31,6 +25,8 @@ let g:clang_complete_macros = 1
 
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
+" Clear search highlighting to Ctrl-z
+nnoremap <C-z> :nohlsearch<CR>
 set nobackup
 set noswapfile
 
@@ -63,3 +59,12 @@ set shiftwidth=2 " number of spaces to use for autoindenting
 set smarttab      " insert tabs on the start of a line according to
                     "    shiftwidth, not tabstop
 set expandtab
+
+" Using vim.plug for installing coc.vim
+" This coc.vim  is a Language Server Protocol used for completion and used by
+" Vim Metals to write better Scala (and potentially other languages).
+" Use release branch (Recommend)
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Configuration for vim-scala
+" au BufRead,BufNewFile *.sbt set filetype=scala
