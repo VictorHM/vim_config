@@ -1,5 +1,6 @@
 set nocompatible
 set number
+" relative number to current position.
 set relativenumber
 set hidden
 syntax on
@@ -8,20 +9,20 @@ set fileencodings=utf-8
 set listchars=eol:$,tab:>-,space:-,nbsp:☠,trail:~,extends:>,precedes:<
 set cmdheight=2
 
-
+" Map Tagbar plugin to easier access
+"nnoremap tags :TagbarToggle<CR>
+"nnoremap ttags :TagbarOpenAutoClose<CR>
 noremap tree :NERDTreeToggle<CR>
 " Add keybinding for :NERDTreeFind
 nnoremap busca :NERDTreeFind<CR>
-" Set clang path
-let g:clang_use_library = 1
-let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-" Disable auto popup, use <Tab> to autocomplete
-let g:clang_complete_auto = 1
-" Show clang errors in the quickfix window
-let g:clang_complete_copen = 1
-let g:clang_snippets = 1
-let g:clang_snippets_engine = 'clang_complete'
-let g:clang_complete_macros = 1
+
+" Set colorscheme bindings
+nnoremap nar :colo amber<CR>
+nnoremap ver :colo green<CR>
+nnoremap borland :colo colibri<CR>
+
+" Set default colorscheme
+colorscheme amber
 
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
@@ -33,8 +34,8 @@ set noswapfile
 " Search Finding
 set ignorecase
 set smartcase
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 set incsearch
 set showmatch
 set hlsearch
@@ -45,6 +46,9 @@ vnoremap <tab> %
 " Columnas a 80 y linea a 81
 set textwidth=80
 set colorcolumn=81
+
+" Fixes common backspace problems
+set backspace=indent,eol,start
 
 " Usar Ctrl-[hjkl] para moverse por ventanas split
 nnoremap <C-h> <C-w>h
@@ -59,12 +63,16 @@ set shiftwidth=2 " number of spaces to use for autoindenting
 set smarttab      " insert tabs on the start of a line according to
                     "    shiftwidth, not tabstop
 set expandtab
+set updatetime=100
+" Vim's auto indentation feature does not work properly with text copied 
+" from outside of Vim. Press the <F2> key to toggle paste mode on/off.
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
 
-" Using vim.plug for installing coc.vim
-" This coc.vim  is a Language Server Protocol used for completion and used by
-" Vim Metals to write better Scala (and potentially other languages).
-" Use release branch (Recommend)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Set autoload files if they change on disk
+set autoread
 
-" Configuration for vim-scala
-" au BufRead,BufNewFile *.sbt set filetype=scala
+" Disable beep in error and set visual error blink.
+set noerrorbells
+set visualbell
